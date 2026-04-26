@@ -27,13 +27,15 @@
       ];
 
       nix.enable = false;
-		programs.zsh.enable = true;
+      programs.zsh.enable = true;
 
       # Enable alternative shell support in nix-darwin.
       # programs.fish.enable = true;
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
+      security.pam.services.sudo_local.touchIdAuth = true;
+      security.pam.services.sudo_local.text = "auth sufficient pam_tid.so.2";
 
       # Used for backwards compatibility, please read the changelog before changing.
       # $ darwin-rebuild changelog
@@ -56,24 +58,24 @@
         ]
         ++ [
           {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
 
-          home-manager.users.christianknab = {pkgs, ...}: {
-            home.stateVersion = "24.11";
-            home.packages = [
-              pkgs.opencode
-            ];
-            programs.zoxide.enable = true;
-            programs.eza.enable = true;
-            programs.bat = {
-              enable = true;
-              config = {
-                paging = "never";
-                style = "plain";
+            home-manager.users.christianknab = {pkgs, ...}: {
+              home.stateVersion = "24.11";
+              home.packages = [
+                pkgs.opencode
+              ];
+              programs.zoxide.enable = true;
+              programs.eza.enable = true;
+              programs.bat = {
+                enable = true;
+                config = {
+                  paging = "never";
+                  style = "plain";
+                };
               };
             };
-          };
           }
         ];
     };
