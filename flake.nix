@@ -28,6 +28,17 @@
 
       nix.enable = false;
       programs.zsh.enable = true;
+      nixpkgs.config.allowUnfree = true;
+      # remove once this issue is fixed https://github.com/NixOS/nixpkgs/issues/513019
+      nixpkgs.overlays = [
+        (final: prev: {
+          direnv =
+            if prev.stdenv.isDarwin
+            then prev.direnv.overrideAttrs (_: {doCheck = false;})
+            else prev.direnv;
+        })
+      ];
+      # remove to here
 
       # Enable alternative shell support in nix-darwin.
       # programs.fish.enable = true;
