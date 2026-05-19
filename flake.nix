@@ -52,6 +52,8 @@
       # $ darwin-rebuild changelog
       system.stateVersion = 6;
 
+      services.tailscale.enable = true;
+
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
 
@@ -76,6 +78,7 @@
               home.stateVersion = "24.11";
               home.packages = [
                 pkgs.opencode
+                pkgs.sl
               ];
               programs.zoxide.enable = true;
               programs.eza.enable = true;

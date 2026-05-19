@@ -5,3 +5,9 @@ https://medium.com/@zmre/nix-darwin-quick-tip-activate-your-preferences-f69942a9
 nix repl
 nix-repl> :lf .
 nix-repl> outputs.darwinConfigurations."Christians-MacBook-Air".config.system.defaults
+
+### rebuild
+```sudo darwin-rebuild switch --flake ~/nix-config```
+
+### update
+```nix flake update```
