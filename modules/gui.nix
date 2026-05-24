@@ -7,6 +7,9 @@
       brave
       rectangle
       spotify
+      stats
+      raycast
+      iterm2
     ];
 
     # track the Rectangle config. on launch it will load the config file at the following path
