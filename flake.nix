@@ -46,7 +46,10 @@
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
       security.pam.services.sudo_local.touchIdAuth = true;
-      security.pam.services.sudo_local.text = "auth sufficient pam_tid.so.2";
+      security.pam.services.sudo_local.text = ''
+        auth       optional       ${pkgs.pam-reattach}/lib/pam/pam_reattach.so ignore_ssh
+        auth       sufficient     pam_tid.so
+      '';
 
       # Used for backwards compatibility, please read the changelog before changing.
       # $ darwin-rebuild changelog
