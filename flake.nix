@@ -1,100 +1,28 @@
 {
-  description = "Example nix-darwin system flake";
+  description = "Christians nix-config";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
   };
 
-  outputs = inputs @ {
-    self,
-    nix-darwin,
-    nixpkgs,
-    home-manager,
-    ...
-  }: let
-    configuration = {pkgs, ...}: {
-      # List packages installed in system profile. To search by name, run:
-      # $ nix-env -qaP | grep wget
-      environment.systemPackages = [
-        pkgs.vim
+  outputs = inputs:
+  # flake-parts to structure the flake outputs
+    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
+      imports = [
+        inputs.flake-parts.flakeModules.modules
+        # sharedModules option def
+        ./modules/features/common/options.nix
+        # import everything in the modules directory
+        (inputs.import-tree ./modules)
       ];
-
-      nix.enable = false;
-      programs.zsh.enable = true;
-      nixpkgs.config.allowUnfree = true;
-      # remove once this issue is fixed https://github.com/NixOS/nixpkgs/issues/513019
-      nixpkgs.overlays = [
-        (final: prev: {
-          direnv =
-            if prev.stdenv.isDarwin
-            then prev.direnv.overrideAttrs (_: {doCheck = false;})
-            else prev.direnv;
-        })
-      ];
-      # remove to here
-
-      # Enable alternative shell support in nix-darwin.
-      # programs.fish.enable = true;
-
-      # Set Git commit hash for darwin-version.
-      system.configurationRevision = self.rev or self.dirtyRev or null;
-      security.pam.services.sudo_local.touchIdAuth = true;
-      security.pam.services.sudo_local.text = ''
-        auth       optional       ${pkgs.pam-reattach}/lib/pam/pam_reattach.so ignore_ssh
-        auth       sufficient     pam_tid.so
-      '';
-
-      # Used for backwards compatibility, please read the changelog before changing.
-      # $ darwin-rebuild changelog
-      system.stateVersion = 6;
-
-      services.tailscale.enable = true;
-
-      # The platform the configuration will be used on.
-      nixpkgs.hostPlatform = "aarch64-darwin";
-
-      users.users.christianknab.home = "/Users/christianknab";
+      systems = ["aarch64-darwin" "aarch64-linux" "x86_64-linux"];
     };
-  in {
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#Christians-MacBook-Air
-    darwinConfigurations."Christians-MacBook-Air" = nix-darwin.lib.darwinSystem {
-      modules =
-        [
-          configuration
-          home-manager.darwinModules.home-manager
-          (inputs.import-tree ./modules)
-        ]
-        ++ [
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-
-            home-manager.users.christianknab = {pkgs, ...}: {
-              home.stateVersion = "24.11";
-              home.packages = [
-                pkgs.opencode
-                pkgs.sl
-              ];
-              programs.zoxide.enable = true;
-              programs.eza.enable = true;
-              programs.bat = {
-                enable = true;
-                config = {
-                  paging = "never";
-                  style = "plain";
-                };
-              };
-            };
-          }
-        ];
-    };
-  };
 }
