@@ -36,6 +36,7 @@
         };
 
         initContent = ''
+          export PATH="$HOME/.cargo/bin:$PATH"
           if [ -z "$TMUX" ] && [ "$TERM_PROGRAM" != "vscode" ]; then tmux attach -t main || tmux new -s main; fi
           source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
           source ${../../data/.p10k.zsh}
@@ -58,6 +59,10 @@
           open() {
             nohup xdg-open "$@" >/dev/null 2>&1 &
           }
+        '';
+
+        profileExtra = ''
+          eval "$(/opt/homebrew/bin/brew shellenv)"
         '';
       };
     };
