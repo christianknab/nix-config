@@ -25,12 +25,14 @@
             # };
             size = 13;
           };
-          terminal.shell = {
-            program = "${pkgs.zsh}/bin/zsh";
+          window = {
+            opacity = 0.8;
+              };
+            terminal.shell = {
+              program = "${pkgs.zsh}/bin/zsh";
+            };
           };
         };
-
       };
     };
-  };
-}
+  }
