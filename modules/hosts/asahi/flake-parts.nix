@@ -1,4 +1,4 @@
-{inputs, ...}: {
+{ inputs, ... }: {
   flake.nixosConfigurations.asahi = inputs.nixpkgs.lib.nixosSystem {
     modules = [
       inputs.self.modules.nixos.asahi

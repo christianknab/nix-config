@@ -15,8 +15,8 @@
   };
 
   outputs = inputs:
-  # flake-parts to structure the flake outputs
-    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
+    # flake-parts to structure the flake outputs
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         inputs.flake-parts.flakeModules.modules
         # sharedModules option def
@@ -24,6 +24,6 @@
         # import everything in the modules directory
         (inputs.import-tree ./modules)
       ];
-      systems = ["aarch64-darwin" "aarch64-linux" "x86_64-linux"];
+      systems = [ "aarch64-darwin" "aarch64-linux" "x86_64-linux" ];
     };
 }

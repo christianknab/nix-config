@@ -1,4 +1,4 @@
-{inputs, ...}: {
+{ inputs, ... }: {
   # defines the actual system output for this host
   flake.darwinConfigurations."christian-m2" = inputs.nix-darwin.lib.darwinSystem {
     modules = [

@@ -4,8 +4,8 @@
       programs.alacritty = {
         enable = true;
         settings = {
-		  # `defaults write -g AppleFontSmoothing -int 0` to stop mac bolding
-		  # ref: https://github.com/alacritty/alacritty/issues/4616
+          # `defaults write -g AppleFontSmoothing -int 0` to stop mac bolding
+          # ref: https://github.com/alacritty/alacritty/issues/4616
           font = {
             normal = {
               family = "JetBrainsMono Nerd Font";
@@ -25,11 +25,11 @@
             # };
             size = 13;
           };
-terminal.shell = {
-          program = "${pkgs.zsh}/bin/zsh";
+          terminal.shell = {
+            program = "${pkgs.zsh}/bin/zsh";
+          };
         };
-        };
-        
+
       };
     };
   };

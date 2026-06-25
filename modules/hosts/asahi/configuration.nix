@@ -1,5 +1,5 @@
-{inputs, ...}: {
-  flake.modules.nixos.asahi = {pkgs, ...}: {
+{ inputs, ... }: {
+  flake.modules.nixos.asahi = { pkgs, ... }: {
     _class = "nixos";
     imports = [
       inputs.self.sharedModules.base

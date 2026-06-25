@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   flake.modules.darwin.gui = { config, ... }: {
     _class = "darwin";
 

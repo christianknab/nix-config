@@ -1,6 +1,6 @@
-{inputs, ...}: {
+{ inputs, ... }: {
   # specific config for the mac
-  flake.modules.darwin.christian-m2 = {pkgs, ...}: {
+  flake.modules.darwin.christian-m2 = { pkgs, ... }: {
     _class = "darwin";
     imports = [
       # cross-platform features
@@ -19,7 +19,11 @@
     nixpkgs.hostPlatform = "aarch64-darwin";
     networking.hostName = "christianknab";
 
-    home-manager.users.christianknab = {pkgs, ...}: {
+    environment.systemPackages = with pkgs; [
+      rustup
+    ];
+
+    home-manager.users.christianknab = { pkgs, ... }: {
       home.stateVersion = "24.11";
       home.packages = [
         pkgs.opencode
