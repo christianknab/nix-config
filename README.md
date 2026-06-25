@@ -1,5 +1,33 @@
 # nix-config
 
+## install/setup mac fresh
+after mac boot, you will need xcode
+```
+xcode-select --install
+```
+
+then you will need to give terminal full disk access
+```
+System Settings -> Privacy & Security -> Full Disk Access
+```
+
+download nix from determinate systems
+```
+
+```
+
+change system name to match the nix one
+```
+sudo scutil --set LocalHostName christianknab
+sudo scutil --set HostName christianknab
+sudo scutil --set ComputerName christianknab
+```
+
+clone nix-config, then
+```
+sudo nix run nix-darwin -- switch --flake .#christian-m2
+```
+
 ## file structure
 
 ```text

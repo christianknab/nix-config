@@ -8,6 +8,9 @@
       inputs.self.sharedModules.zsh
       inputs.self.sharedModules.tmux
       inputs.self.sharedModules.direnv
+      inputs.self.sharedModules.alacritty
+      inputs.self.sharedModules.fonts
+      inputs.self.sharedModules.packages
       # macOS specific features
       inputs.self.modules.darwin.base
       inputs.self.modules.darwin.gui
@@ -21,6 +24,8 @@
       home.packages = [
         pkgs.opencode
         pkgs.sl
+        pkgs.neovim
+        pkgs.stow
       ];
       programs.zoxide.enable = true;
       programs.eza.enable = true;

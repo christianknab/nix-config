@@ -14,6 +14,7 @@
     '';
 
     system.stateVersion = 6;
+    system.primaryUser = config.mainUser;
     services.tailscale.enable = true;
     nix.enable = false; # determinate nix manages nix version
 

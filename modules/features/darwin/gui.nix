@@ -1,19 +1,31 @@
 {...}: {
-  flake.modules.darwin.gui = { pkgs, config, ... }: {
+  flake.modules.darwin.gui = { config, ... }: {
     _class = "darwin";
-    home-manager.users.${config.mainUser} = {
-      home.packages = with pkgs; [
-        obsidian
-        signal-desktop
-        zoom-us
-        brave
-        rectangle
-        spotify
-        stats
-        raycast
-        iterm2
-      ];
 
+    nix-homebrew = {
+      enable = true;
+      user = config.mainUser;
+      autoMigrate = false;
+    };
+
+    homebrew = {
+      enable = true;
+      onActivation = {
+        autoUpdate = true;
+        cleanup = "uninstall";
+      };
+      casks = [
+        "obsidian"
+        "signal"
+        "zoom"
+        "brave-browser"
+        "rectangle"
+        "stats"
+        "raycast"
+      ];
+    };
+
+    home-manager.users.${config.mainUser} = {
       home.file."Library/Application Support/Rectangle/RectangleConfig.json".source =
         ../../data/RectangleConfig.json;
     };
