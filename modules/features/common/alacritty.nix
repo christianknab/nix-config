@@ -27,12 +27,13 @@
           };
           window = {
             opacity = 0.8;
-              };
-            terminal.shell = {
-              program = "${pkgs.zsh}/bin/zsh";
-            };
+            decorations = "buttonless";
+          };
+          terminal.shell = {
+            program = "${pkgs.zsh}/bin/zsh";
           };
         };
       };
     };
-  }
+  };
+}
