@@ -14,6 +14,7 @@
       # macOS specific features
       inputs.self.modules.darwin.base
       inputs.self.modules.darwin.gui
+      inputs.self.modules.darwin.settings
     ];
 
     nixpkgs.hostPlatform = "aarch64-darwin";
