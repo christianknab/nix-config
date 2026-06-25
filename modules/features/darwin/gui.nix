@@ -22,6 +22,7 @@
         "rectangle"
         "stats"
         "raycast"
+        "librewolf"
       ];
     };
 
