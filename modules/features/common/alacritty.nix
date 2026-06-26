@@ -7,8 +7,12 @@
           # `defaults write -g AppleFontSmoothing -int 0` to stop mac bolding
           # ref: https://github.com/alacritty/alacritty/issues/4616
           font = {
+            # normal = {
+            #   family = "JetBrainsMono Nerd Font";
+            #   style = "Regular";
+            # };
             normal = {
-              family = "JetBrainsMono Nerd Font";
+              family = "Hack Nerd Font";
               style = "Regular";
             };
             # bold = {
@@ -23,10 +27,10 @@
             #   family = "JetBrainsMono Nerd Font";
             #   style = "Bold Italic";
             # };
-            size = 13;
+            size = 14;
           };
           window = {
-            opacity = 0.8;
+            opacity = 0.6;
             decorations = "buttonless";
           };
           terminal.shell = {

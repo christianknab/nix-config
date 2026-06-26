@@ -22,7 +22,11 @@
         "rectangle"
         "stats"
         "raycast"
+        # librewolf is not signed, so mac does not allow to open. Run: `xattr -d com.apple.quarantine /Applications/LibreWolf.app`
         "librewolf"
+        "spotify"
+        "prismlauncher"
+		"microsoft-outlook"
       ];
     };
 
