@@ -26,7 +26,7 @@
         "librewolf"
         "spotify"
         "prismlauncher"
-		"microsoft-outlook"
+        "microsoft-outlook"
       ];
     };
 

@@ -29,8 +29,25 @@
       ] ++ (if (vars? "defaultbrowser" && builtins.isString vars.defaultbrowser) then [ pkgs.defaultbrowser ] else [ ]);
 
       system.activationScripts = (if (vars ? "defaultbrowser" && builtins.isString vars.defaultbrowser) then {
-        postActivation.text = "${pkgs.defaultbrowser}/bin/defaultbrowser ${vars.defaultbrowser}";
+        postActivation.text = ''
+          			# set deafult browser
+          			${pkgs.defaultbrowser}/bin/defaultbrowser ${vars.defaultbrowser}
+          			# make settings activate immediately without restart
+          			/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+          		'';
       } else { });
+
+
+      # setting some custom settings
+      system.defaults.CustomUserPreferences = {
+        "com.apple.finder" = {
+          _FXSortFoldersFirst = true;
+          FXPreferredSearchViewStyle = "Nlsv";
+          # When performing a search, search the current folder by default
+          FXDefaultSearchScope = "SCcf";
+          ShowPathbar = true;
+        };
+      };
 
       home-manager.users.christianknab = { pkgs, ... }: {
         home.stateVersion = "24.11";
@@ -42,6 +59,7 @@
         ];
         programs.zoxide.enable = true;
         programs.eza.enable = true;
+        programs.fd.enable = true;
         programs.bat = {
           enable = true;
           config = {
@@ -49,6 +67,7 @@
             style = "plain";
           };
         };
+        programs.zsh.shellAliases.open = "/usr/bin/open"; # open command gets messed up
       };
     };
 }
