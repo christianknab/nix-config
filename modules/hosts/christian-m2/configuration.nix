@@ -28,16 +28,6 @@
         rustup
       ] ++ (if (vars? "defaultbrowser" && builtins.isString vars.defaultbrowser) then [ pkgs.defaultbrowser ] else [ ]);
 
-      system.activationScripts = (if (vars ? "defaultbrowser" && builtins.isString vars.defaultbrowser) then {
-        postActivation.text = ''
-          			# set deafult browser
-          			${pkgs.defaultbrowser}/bin/defaultbrowser ${vars.defaultbrowser}
-          			# make settings activate immediately without restart
-          			/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
-          		'';
-      } else { });
-
-
       # setting some custom settings
       system.defaults.CustomUserPreferences = {
         "com.apple.finder" = {
@@ -47,7 +37,53 @@
           FXDefaultSearchScope = "SCcf";
           ShowPathbar = true;
         };
+        "com.apple.desktopservices" = {
+          # Avoid creating .DS_Store files on network or USB volumes
+          DSDontWriteNetworkStores = true;
+          DSDontWriteUSBStores = true;
+        };
+        "com.apple.screensaver" =
+          {
+            askForPassword = 1;
+            askForPasswordDelay = 0;
+          };
+        "com.apple.screencapture" = {
+          location = "~/Downloads";
+          type = "png";
+        };
+        "com.apple.symbolichotkeys" = {
+          AppleSymbolicHotKeys = {
+            # 30: "Save picture of selected area as a file"
+            # Remapped to: Cmd + Ctrl + Shift + 4
+            "30" = {
+              enabled = true;
+              value = {
+                parameters = [ 65535 21 1441792 ]; # 1441792 = Cmd + Ctrl + Shift
+                type = "standard";
+              };
+            };
+
+            # 31: "Copy picture of selected area to clipboard"
+            # Remapped to: Cmd + Shift + 4
+            "31" = {
+              enabled = true;
+              value = {
+                parameters = [ 65535 21 1179648 ]; # 1179648 = Cmd + Shift
+                type = "standard";
+              };
+            };
+          };
+        };
       };
+
+      system.activationScripts = (if (vars ? "defaultbrowser" && builtins.isString vars.defaultbrowser) then {
+        postActivation.text = ''
+          			# set deafult browser
+          			${pkgs.defaultbrowser}/bin/defaultbrowser ${vars.defaultbrowser}
+          			# make settings activate immediately without restart
+          			/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+          		'';
+      } else { });
 
       home-manager.users.christianknab = { pkgs, ... }: {
         home.stateVersion = "24.11";

@@ -13,7 +13,7 @@
     ];
 
     system.defaults.dock.autohide = true;
-    system.defaults.NSGlobalDomain.KeyRepeat =  1;
+    system.defaults.NSGlobalDomain.KeyRepeat = 1;
     system.defaults.NSGlobalDomain.AppleFontSmoothing = 0;
   };
 }
