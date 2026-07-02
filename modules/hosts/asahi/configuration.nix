@@ -6,23 +6,20 @@
       inputs.self.sharedModules.zsh
       inputs.self.sharedModules.tmux
       inputs.self.sharedModules.direnv
-      ./hardware-configuration.nix
+      ./_hardware/hardware-configuration.nix
       inputs.self.modules.nixos.base
-      ./apple-silicon-support
+      inputs.apple-silicon.nixosModules.apple-silicon-support
     ];
 
     networking.hostName = "christianknab";
-    boot.loader.systemd-boot.enable = true;
-    boot.loader.efi.canTouchEfiVariables = false;
     boot.extraModprobeConfig = ''
 	options hid_apple iso_layout=0
     '';
     hardware.asahi.peripheralFirmwareDirectory = ./firmware;
-    time.timeZone = "America/Los_Angeles";
 services.libinput.enable = true;
 services.xserver.enable = true;
 services.xserver.desktopManager.xfce.enable = true;
-    
+
    home-manager.users.christianknab = { pkgs, ... }: {
         home.stateVersion = "26.11";
         home.packages = [
@@ -33,6 +30,7 @@ services.xserver.desktopManager.xfce.enable = true;
         programs.zoxide.enable = true;
         programs.eza.enable = true;
         programs.fd.enable = true;
+	programs.firefox.enable = true;
         programs.bat = {
           enable = true;
           config = {
@@ -40,7 +38,12 @@ services.xserver.desktopManager.xfce.enable = true;
             style = "plain";
           };
         };
+	programs.git = {
+		enable = true;
+		lfs.enable = true;
+		userName = "Christian Knab";
+		userEmail = "christiantknab@gmail.com";
+		};
       };
     };
-  };
 }

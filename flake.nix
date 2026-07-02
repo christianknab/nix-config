@@ -12,6 +12,8 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+    apple-silicon.url = "github:tpwrules/nixos-apple-silicon";
+    apple-silicon.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs:

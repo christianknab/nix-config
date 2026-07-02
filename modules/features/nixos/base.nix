@@ -5,10 +5,10 @@
     , ...
     }: {
       boot.loader.systemd-boot.enable = true;
-      boot.loader.efi.canTouchEfiVariables = true;
+      boot.loader.efi.canTouchEfiVariables = false;
 
+    time.timeZone = "America/Los_Angeles";
       networking.networkmanager.enable = true;
-      time.timeZone = "UTC";
 
       users.users.${config.mainUser} = {
         isNormalUser = true;
