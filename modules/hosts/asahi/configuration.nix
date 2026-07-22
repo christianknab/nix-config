@@ -6,9 +6,13 @@
       inputs.self.sharedModules.zsh
       inputs.self.sharedModules.tmux
       inputs.self.sharedModules.direnv
+      inputs.self.sharedModules.packages
+        inputs.self.sharedModules.fonts
       ./_hardware/hardware-configuration.nix
       inputs.self.modules.nixos.base
+      inputs.self.modules.nixos.desktop
       inputs.apple-silicon.nixosModules.apple-silicon-support
+        inputs.self.sharedModules.alacritty
     ];
 
     networking.hostName = "christianknab";
@@ -16,9 +20,6 @@
 	options hid_apple iso_layout=0
     '';
     hardware.asahi.peripheralFirmwareDirectory = ./firmware;
-services.libinput.enable = true;
-services.xserver.enable = true;
-services.xserver.desktopManager.xfce.enable = true;
 
    home-manager.users.christianknab = { pkgs, ... }: {
         home.stateVersion = "26.11";
@@ -28,6 +29,7 @@ services.xserver.desktopManager.xfce.enable = true;
           pkgs.neovim
         ];
         programs.zoxide.enable = true;
+	programs.zsh.enable = true;
         programs.eza.enable = true;
         programs.fd.enable = true;
 	programs.firefox.enable = true;

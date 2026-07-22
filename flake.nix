@@ -14,6 +14,8 @@
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
     apple-silicon.url = "github:tpwrules/nixos-apple-silicon";
     apple-silicon.inputs.nixpkgs.follows = "nixpkgs";
+    noctalia.url = "github:noctalia-dev/noctalia-shell";
+    noctalia.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs:

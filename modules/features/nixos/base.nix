@@ -10,9 +10,12 @@
     time.timeZone = "America/Los_Angeles";
       networking.networkmanager.enable = true;
 
+      programs.zsh.enable = true;
+
       users.users.${config.mainUser} = {
         isNormalUser = true;
         extraGroups = [ "wheel" "networkmanager" ];
+        shell = pkgs.zsh;
       };
     };
 }
