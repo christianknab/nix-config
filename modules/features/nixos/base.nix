@@ -11,6 +11,14 @@
       networking.networkmanager.enable = true;
 
       programs.zsh.enable = true;
+      services.libinput = {
+  enable = true;
+  touchpad = {
+    tapping = false;
+    clickMethod = "clickfinger"; 
+  };
+};
+
 
       users.users.${config.mainUser} = {
         isNormalUser = true;

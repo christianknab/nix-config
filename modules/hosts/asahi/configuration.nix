@@ -21,7 +21,7 @@
     '';
     hardware.asahi.peripheralFirmwareDirectory = ./firmware;
 
-   home-manager.users.christianknab = { pkgs, ... }: {
+   home-manager.users.christianknab = { pkgs, lib, ... }: {
         home.stateVersion = "26.11";
         home.packages = [
           pkgs.opencode
@@ -46,6 +46,10 @@
 		userName = "Christian Knab";
 		userEmail = "christiantknab@gmail.com";
 		};
+        programs.alacritty.settings = {
+          font.size = lib.mkForce 11;
+          window.decorations = lib.mkForce "none";
+        };
       };
     };
 }
