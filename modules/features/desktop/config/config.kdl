@@ -15,6 +15,7 @@ input {
 
     // Focus windows and outputs automatically when moving the mouse into them.
     focus-follows-mouse max-scroll-amount="0%"
+	disable-power-key-handling
 }
 
 // Laptop lid close behaviour
@@ -45,10 +46,13 @@ debug {
 spawn-at-startup "noctalia"
 
 binds {
+    XF86PowerOff { spawn-sh "noctalia msg session lock-and-suspend"; }
+
     Mod+T { spawn "alacritty"; }
     Mod+D { spawn-sh "noctalia msg panel-toggle launcher"; }
     Mod+S { spawn-sh "noctalia msg panel-toggle control-center"; }
 
+	Mod+Q hotkey-overlay-title=null { close-window; }
     Mod+Shift+E { quit; }
 
     // Screenshots
