@@ -13,6 +13,7 @@
         inputs.self.sharedModules.tmux
         inputs.self.sharedModules.direnv
         inputs.self.sharedModules.alacritty
+        inputs.self.sharedModules.kitty
         inputs.self.sharedModules.fonts
         inputs.self.sharedModules.packages
         # macOS specific features
@@ -53,6 +54,22 @@
         };
         "com.apple.symbolichotkeys" = {
           AppleSymbolicHotKeys = {
+            # 9: Move focus to active or next window (Global window cycling)
+            "9" = {
+              enabled = true;
+              value = {
+                parameters = [ 96 50 1048576 ]; # 96 = ASCII for `, 50 = Keycode, 1048576 = Cmd
+                type = "standard";
+              };
+            };
+            "60" = {
+              enabled = false;
+            };
+            "27" = { enabled = false; };
+            # 64: Show Spotlight Search (Cmd+Space) - disabled in favor of Raycast
+            "64" = { enabled = false; };
+            # 63: Show Spotlight Finder window (Cmd+Option+Space)
+            "63" = { enabled = false; };
             # 30: "Save picture of selected area as a file"
             # Remapped to: Cmd + Ctrl + Shift + 4
             "30" = {
