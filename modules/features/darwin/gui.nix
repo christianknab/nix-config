@@ -27,6 +27,7 @@
         "spotify"
         "prismlauncher"
         "microsoft-outlook"
+        "microsoft-teams"
       ];
     };
 
