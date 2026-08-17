@@ -27,6 +27,7 @@
         "prismlauncher"
         "microsoft-outlook"
         "microsoft-teams"
+        "slack"
       ];
     };
 
