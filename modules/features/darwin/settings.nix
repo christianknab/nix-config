@@ -4,7 +4,7 @@
 
     system.defaults.dock.persistent-apps = [
       "/System/Applications/Messages.app"
-      "/Applications/LibreWolf.app/"
+      "/Applications/Nix Apps/LibreWolf.app"
       "/Applications/Signal.app/"
       "/Applications/Spotify.app/"
       "/System/Applications/Notes.app"

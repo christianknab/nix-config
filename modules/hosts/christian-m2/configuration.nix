@@ -27,6 +27,7 @@
 
       environment.systemPackages = with pkgs; [
         rustup
+		librewolf
       ] ++ (if (vars? "defaultbrowser" && builtins.isString vars.defaultbrowser) then [ pkgs.defaultbrowser ] else [ ]);
 
       # setting some custom settings
