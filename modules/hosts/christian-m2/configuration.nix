@@ -27,7 +27,9 @@
 
       environment.systemPackages = with pkgs; [
         rustup
-		librewolf
+        librewolf
+        pkgs.docker
+        pkgs.docker-compose
       ] ++ (if (vars? "defaultbrowser" && builtins.isString vars.defaultbrowser) then [ pkgs.defaultbrowser ] else [ ]);
 
       # setting some custom settings

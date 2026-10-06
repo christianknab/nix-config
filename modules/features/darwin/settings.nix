@@ -13,7 +13,6 @@
       "/Applications/Nix Apps/LibreWolf.app/"
       "${pkgs.alacritty}/Applications/Alacritty.app"
       "/Applications/Microsoft Outlook.app/"
-      "/Applications/Microsoft Teams.app/"
       "/Applications/Slack.app/"
     ];
 

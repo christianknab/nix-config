@@ -27,7 +27,10 @@
         "prismlauncher"
         "microsoft-outlook"
         "microsoft-teams"
+        "microsoft-powerpoint"
         "slack"
+		"visual-studio-code"
+		"xquartz"
       ];
     };
 
