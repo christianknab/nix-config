@@ -19,5 +19,11 @@
       nix.enable = false; # determinate nix manages nix version
 
       users.users.${config.mainUser}.home = "/Users/${config.mainUser}";
+
+
+      services.skhd.enable = true;
+      services.skhd.skhdConfig = ''
+        cmd - e : osascript -e 'tell application "Alacritty" to activate'
+      '';
     };
 }
